@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mi-app-contenedor
-        image: mi-app-k8s:v1.0
+        image: harreolarubio/mi-app-k8s:v2.0
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
