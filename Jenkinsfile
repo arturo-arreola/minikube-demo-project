@@ -17,7 +17,7 @@ pipeline {
         sh 'echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin'
 
         echo 'Subiendo la imagen a Docker Hub...'
-        sh 'docker push harreolarubio/mi-app-k8s:v2.0'
+        sh 'docker push harreolarubio/mi-app-k8s:v2.1'
       }
     }
   }
