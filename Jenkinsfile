@@ -32,7 +32,7 @@ pipeline {
         sh """
           git add k8s.yaml
           git commit -m 'Actualizando la version de la imagen a 1.0.${BUILD_NUMBER} en el archivo k8s.yaml desde Jenkins'
-          git push https://${GITHUB_CREDS_USR}:${GITHUB_CREDS_PSW}@github.com/harreolarubio/mi-app-k8s.git HEAD:main
+          git push https://${GITHUB_CREDS_USR}:${GITHUB_CREDS_PSW}@github.com/arturo-arreola/minikube-demo-project.git HEAD:main
         """
       }
     }
