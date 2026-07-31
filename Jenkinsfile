@@ -8,7 +8,7 @@ pipeline {
     stage('Construir imagen') {
       steps {
         echo 'Construyendo la imagen de Docker...'
-        sh 'docker build -t harreolarubio/mi-app-k8s:v2.0 .'
+        sh 'docker build -t harreolarubio/mi-app-k8s:v2.1 .'
       }
     }
     stage('Subir a Docker Hub (Push)') {
