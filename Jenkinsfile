@@ -18,6 +18,12 @@ pipeline {
         sh 'docker run --rm harreolarubio/mi-app-k8s:1.0.${BUILD_NUMBER} pytest test_app.py'
       }
     }
+    stage('Escaneo de seguridad con Trivy'){
+      steps {
+        echo 'Escaneando la imagen con Trivy...'
+        sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --no-progress --severity MEDIUM,HIGH,CRITICAL harreolarubio/mi-app-k8s:1.0.${BUILD_NUMBER}"
+      }
+    }
     stage('Subir imagen a DockerHub (CI)'){
       steps {
         echo 'Subiendo la imagen a Docker Hub...'
