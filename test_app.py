@@ -19,6 +19,6 @@ def test_ruta_raiz(client):
     assert b"GitOps" in response.data
 
 def test_ruta_status(client):
-    response = client.get('/status/?cpu=40')
+    response = client.get('/status/40')
     assert response.status_code == 200
     assert response.json == {"cpu_actual ": 40, "estado_sistema": "OK"}
