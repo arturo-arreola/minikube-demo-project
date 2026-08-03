@@ -12,7 +12,7 @@ def obtener_estado_sistema(cpu_usage):
 def hello():
   return "Hola GitOps! Esta version incluye Pruebas Unitarias"
 
-@app.route('/status/<init:cpu>')
+@app.route('/status/<int:cpu>')
 def status(cpu):
   estado = obtener_estado_sistema(cpu)
   return jsonify({
