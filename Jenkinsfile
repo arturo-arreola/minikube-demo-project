@@ -6,15 +6,23 @@ pipeline {
   }
 
   stages {
-    stage('Construir imagen y subir a Docker Hub (Build & Push)') {
+    stage('Construir imagen Docker (CI)'){
       steps {
         echo 'Construyendo la imagen con version 1.0.${BUILD_NUMBER}...'
         sh 'docker build -t harreolarubio/mi-app-k8s:1.0.${BUILD_NUMBER} .'
-
+      }
+    }
+    stage('Ejecutar pruebas unitarias (CI)'){
+      steps {
+        echo 'Ejecutando pruebas unitarias dentro del contenedor Docker...'
+        sh 'docker run --rm harreolarubio/mi-app-k8s:1.0.${BUILD_NUMBER} pytest test_app.py'
+      }
+    }
+    stage('Subir imagen a DockerHub (CI)'){
+      steps {
         echo 'Subiendo la imagen a Docker Hub...'
         sh 'echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin'
         sh 'docker push harreolarubio/mi-app-k8s:1.0.${BUILD_NUMBER}'
-
       }
     }
     stage('Actualizar GitOps (CD)'){
